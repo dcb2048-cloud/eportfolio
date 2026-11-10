@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="My Cadence Virtuoso ring oscillator project for Silicon Jackets.">
+<title>Ring Oscillator Project | Daniel Brady</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+<h1>Ring Oscillator Project</h1>
+<p>Daniel Brady | Silicon Jackets | Fall 2026</p>
+<nav aria-label="Main navigation"><a href="./">Back to my portfolio</a></nav>
+</header>
+<main>
+<section>
+<h2>Project Overview</h2>
+<p>For my Silicon Jackets project, I designed a three-stage current-starved CMOS ring oscillator using Cadence Virtuoso. I wanted to learn more about integrated circuit design and understand how a schematic becomes a physical layout. The design targeted a frequency of 500 MHz with a 1.8 V supply and a buffer driving a 1 pF output load.</p>
+<p>A ring oscillator connects an odd number of inverters in a loop. Each inverter takes a small amount of time to change its output. As the signal travels around the loop, the circuit keeps switching. In a current-starved design, extra transistors limit the current available to each stage. Changing the control voltage changes that current and adjusts the frequency.</p>
+<figure class="small"><img src="ring.svg" width="760" height="380" alt="Three inverter stages connected in a feedback loop with an output buffer"><figcaption>A simplified diagram of the ring oscillator.</figcaption></figure>
+
+<h2>What I Did</h2>
+<p>I started with hand calculations to estimate the delay needed at each stage. For a 500 MHz target and three stages, the average delay was about 333 picoseconds per stage. I then estimated the capacitance and used the process design kit parameters to choose starting transistor sizes.</p>
+<p>One detail I had to account for was the load on the last stage. That stage drives both the next inverter in the loop and the input of the output buffer. The buffer then drives the external load. Keeping track of those connections helped me understand why the stages could behave differently even though they were part of the same ring.</p>
+<p>After the calculations, I built and simulated the schematic in Cadence. I looked at the waveform and considered how the transistor sizes, current, and loading affected the circuit. I then completed the physical layout and checked it using DRC and LVS.</p>
+<figure class="small"><img src="verification.svg" width="760" height="350" loading="lazy" alt="Design steps from sizing to simulation and layout verification"><figcaption>The main steps I followed.</figcaption></figure>
+
+<h2>Results and What I Learned</h2>
+<p>The design passed DRC and LVS. DRC checks whether the layout follows the manufacturing rules, while LVS checks whether the layout matches the schematic. The 500 MHz value was the target I used when designing the circuit.</p>
+<p>This was a useful introduction to the amount of checking involved in circuit design. Getting through the calculations was only one part of the project. I also had to think about how the circuit would be connected and laid out.</p>
+<p>I also got practice explaining my design choices. Being able to say why I chose a certain size or what a check tells me is something I want to keep improving, especially as I explore consulting.</p>
+<p>If I continued the project, I would compare the schematic simulation with a simulation that includes the layout's parasitic effects. I would also document the frequency at different control voltages. That would help me explain where the design worked well and what I would change next.</p>
+</section>
+<p><a href="./#projects">Back to projects</a></p>
+</main>
+<footer>Daniel Brady | Georgia Institute of Technology</footer>
+</body>
+</html>
