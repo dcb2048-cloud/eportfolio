@@ -16,24 +16,27 @@
 <main>
 <section>
 <h2>Project Overview</h2>
-<p>For my Silicon Jackets project, I designed a three-stage current-starved CMOS ring oscillator using Cadence Virtuoso. I wanted to learn more about integrated circuit design and understand how a schematic becomes a physical layout. The design targeted a frequency of 500 MHz with a 1.8 V supply and a buffer driving a 1 pF output load.</p>
+<p>For my Silicon Jackets project, I designed a five-stage current-starved CMOS ring oscillator using Cadence Virtuoso. I wanted to learn more about integrated circuit design and understand how a schematic becomes a physical layout. The design targeted a frequency of 500 MHz with a 1.8 V supply and a buffer driving a 1 pF output load.</p>
 <p>A ring oscillator connects an odd number of inverters in a loop. Each inverter takes a small amount of time to change its output. As the signal travels around the loop, the circuit keeps switching. In a current-starved design, extra transistors limit the current available to each stage. Changing the control voltage changes that current and adjusts the frequency.</p>
-<figure class="small"><img src="ring.svg" width="760" height="380" alt="Three inverter stages connected in a feedback loop with an output buffer"><figcaption>A simplified diagram of the ring oscillator.</figcaption></figure>
+<figure><a href="ring-top-schematic.png"><img src="ring-top-schematic.png" width="2250" height="1104" loading="lazy" alt="Cadence schematic connecting the five-stage oscillator core to a separate output buffer"></a><figcaption>My top-level schematic connects the oscillator core to the output buffer. Click the image for a larger view.</figcaption></figure>
 
 <h2>What I Did</h2>
-<p>I started with hand calculations to estimate the delay needed at each stage. For a 500 MHz target and three stages, the average delay was about 333 picoseconds per stage. I then estimated the capacitance and used the process design kit parameters to choose starting transistor sizes.</p>
+<p>I started with hand calculations to estimate the delay needed at each stage. For a 500 MHz target and five stages, the average delay was about 200 picoseconds per stage. I then estimated the capacitance and used the process design kit parameters to choose starting transistor sizes.</p>
 <p>One detail I had to account for was the load on the last stage. That stage drives both the next inverter in the loop and the input of the output buffer. The buffer then drives the external load. Keeping track of those connections helped me understand why the stages could behave differently even though they were part of the same ring.</p>
 <p>After the calculations, I built and simulated the schematic in Cadence. I looked at the waveform and considered how the transistor sizes, current, and loading affected the circuit. I then completed the physical layout and checked it using DRC and LVS.</p>
-<figure class="small"><img src="verification.svg" width="760" height="350" loading="lazy" alt="Design steps from sizing to simulation and layout verification"><figcaption>The main steps I followed.</figcaption></figure>
+<figure><a href="ring-completed-layout.png"><img src="ring-completed-layout.png" width="3075" height="1396" loading="lazy" alt="Completed Cadence layout of the oscillator core and four-inverter output buffer"></a><figcaption>The completed layout, with the oscillator core on the left and the output buffer on the right. Click the image for a larger view.</figcaption></figure>
 
 <h2>Results and What I Learned</h2>
-<p>The design passed DRC and LVS. DRC checks whether the layout follows the manufacturing rules, while LVS checks whether the layout matches the schematic. The 500 MHz value was the target I used when designing the circuit.</p>
+<p>The nominal simulation ran at about 510 MHz at 27 °C, close to my 500 MHz target. Frequency changed substantially across temperature and process corners, so meeting the target at one condition was only part of the problem. The top-level LVS result was MATCH. The DRC report still listed four metal-density flags. These checks helped me see what was working and what still needed attention.</p>
+<figure><a href="ring-oscillation-waveform.png"><img src="ring-oscillation-waveform.png" width="1382" height="823" loading="lazy" alt="Cadence transient simulation with purple core waveform and orange buffered output at about 510 MHz"></a><figcaption>The simulated core signal and buffered output at 27 °C, running at about 510 MHz. Click the image for a larger view.</figcaption></figure>
+<figure><a href="ring-lvs-match.png"><img src="ring-lvs-match.png" width="1202" height="749" loading="lazy" alt="Pegasus top-level layout-versus-schematic comparison showing Run Result MATCH"></a><figcaption>The top-level LVS report confirms that the layout matches the schematic. Click the image for a larger view.</figcaption></figure>
 <p>This was a useful introduction to the amount of checking involved in circuit design. Getting through the calculations was only one part of the project. I also had to think about how the circuit would be connected and laid out.</p>
 <p>I also got practice explaining my design choices. Being able to say why I chose a certain size or what a check tells me is something I want to keep improving, especially as I explore consulting.</p>
-<p>If I continued the project, I would compare the schematic simulation with a simulation that includes the layout's parasitic effects. I would also document the frequency at different control voltages. That would help me explain where the design worked well and what I would change next.</p>
+<p>Next, I would work on reducing frequency changes over temperature and process corners. I would also compare the schematic simulation with a simulation that includes the layout's parasitic effects. That would help me explain the tradeoffs and decide what to improve.</p>
 </section>
 <p><a href="./#projects">Back to projects</a></p>
 </main>
 <footer>Daniel Brady | Georgia Institute of Technology</footer>
 </body>
 </html>
+
