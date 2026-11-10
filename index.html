@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Daniel Brady's electrical engineering student portfolio at Georgia Tech.">
 <title>Daniel Brady | ECE Portfolio</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=project-media">
 </head>
 <body>
 <header>
@@ -43,9 +43,20 @@
 <p>For Silicon Jackets, I designed and tested a current-starved CMOS ring oscillator in Cadence Virtuoso. I completed the physical layout and passed DRC and LVS checks. This project helped me understand how a circuit moves from initial calculations to a checked layout.</p>
 <p><a href="discovery.html">Read my ring oscillator project feature</a></p>
 
-<h3>ESP32 Lab</h3>
+<h3 id="esp32">ESP32 Lab</h3>
 <p>In ECE 2036, I worked with an ESP32-C6, an LCD, and a speaker. I got a moving object to display and tested the audio output. Going back to a working sketch helped me troubleshoot when a later version left the screen blank.</p>
-<figure class="small"><img src="esp32.svg" width="760" height="380" loading="lazy" alt="ESP32 connected to an LCD, speaker driver, and joystick"><figcaption>The main parts of the ESP32 lab.</figcaption></figure>
+<figure class="lab-media">
+<a href="esp32-lab-setup.jpg"><img src="esp32-lab-setup.jpg" width="1536" height="2048" loading="lazy" alt="My ESP32-C6 breadboard setup with a joystick, speaker, and LCD displaying a green square"></a>
+<figcaption>My ESP32-C6 setup with the LCD, joystick, and speaker.</figcaption>
+</figure>
+<figure class="lab-media">
+<video controls playsinline preload="metadata" width="540" height="960" aria-label="ESP32 lab demonstration"><source src="esp32-lab-demo.mp4" type="video/mp4">Your browser does not support embedded video. <a href="esp32-lab-demo.mp4">Open the lab demo.</a></video>
+<figcaption>A short demo of my ESP32 lab.</figcaption>
+</figure>
+<figure class="lab-media">
+<video controls playsinline preload="metadata" width="540" height="960" aria-label="ESP32 joystick and LCD demonstration"><source src="esp32-joystick-demo.mp4" type="video/mp4">Your browser does not support embedded video. <a href="esp32-joystick-demo.mp4">Open the joystick demo.</a></video>
+<figcaption>Testing the joystick and the square on the LCD.</figcaption>
+</figure>
 
 <h3>Digit Classifier</h3>
 <p>I also tested a C++ neural network for recognizing handwritten digits. I compared different hidden-layer sizes and looked at accuracy and runtime. The short training runs gave low accuracy, which showed me why it's important to check results carefully before deciding that a larger model is better.</p>
@@ -61,4 +72,5 @@
 <footer>Daniel Brady | Georgia Institute of Technology</footer>
 </body>
 </html>
+
 

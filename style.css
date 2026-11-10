@@ -32,3 +32,7 @@ footer { border-top: 1px solid #bbb; margin-top: 32px; padding: 14px 0; font-siz
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+figure.lab-media { width: 440px; }
+.lab-media video { display: block; width: 100%; height: auto; max-height: 640px; background: #111; }
+
